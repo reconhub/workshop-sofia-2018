@@ -3,10 +3,9 @@ title: Outbreak of gastroenteritis after a high school dinner in Copenhagen, Den
   2006
 author: "Zhian N. Kamvar, Janetta Skarp, Alexander Spina, and Patrick Keating"
 output:
-  pdf_document: default
-  word_document: default
-geometry: margin=1.5cm
+  html_document
 ---
+
 The following code has been adapted to *R* for learning purposes. The initial contributors and copyright license are listed below. All copyrights and licenses of the original document apply here as well. 
 
 **Contributors to *R* code:**  
@@ -46,7 +45,7 @@ With the understanding that:
 + Notice - For any reuse or distribution, you must make clear to others the license terms of this work by keeping together this work and the current license.
 This licence is based on http://creativecommons.org/licenses/by-sa/3.0/
 
-\pagebreak 
+ 
 
 
 # The Alert 
@@ -61,7 +60,7 @@ Symptomatic party attendees were asked to submit stool samples via their general
 In the study, the following case definition was used: a case is a person from the cohort, who presented with diarrhoea or vomiting within 48 hours of the meal. So anyone who presented with diarrhoea or vomiting from 6pm on November 11th to 5:59pm on November 13th was included as a case. Anyone with symptoms outside this time window is defined as a control as this person probably didn't become sick at the party.
 
 
-\pagebreak
+
 
 # An introduction to the R companion 
 
@@ -123,15 +122,14 @@ You will work with Stata.dta data sets which can be loaded into R with the "have
 R can hold one or many data sets in memory simultaneously, so there is usually no need to save intermediate files or close and re-open datasets.
 
 
-\pagebreak 
+ 
 
 
 # Data management and *R scripts*
 
 ### Reading in datasets
 
-Open the data set **copenhagen_raw.dta** using haven's `read_dta()` command.  
-We will then convert the labels to factors and save it as a comma-separated values (csv) file. 
+Open the data set **copenhagen_raw.csv** using the `read.csv()` command.  
 It is also possible to import datasets from other formats, such as Excel; see appendix for example. 
 Datasets in *R* are stored and can be referred to using the name it is saved as (in our case "cph").
 
@@ -229,7 +227,7 @@ Often, plotting the data can be much more informative. For example, instead of u
 
 > Question: Is there anything weird about these data?
 
-\pagebreak 
+ 
 
 ```{r two_by_two}
 # You can look at age among teachers using the group variable
@@ -260,7 +258,7 @@ table(onset = cph$start[no_symptoms(cph$diarrhoea) &
 
 
 
-\pagebreak
+
 
 ## Data cleaning 
 
@@ -328,7 +326,7 @@ table(cph$case)
 
 ```
 
-\pagebreak
+
 
 ```{r check_cases_again}
 # check if people were assigned properly according to symptoms
@@ -381,7 +379,7 @@ identical(cph, cph2)
 
 Throughout the tutorial, we have saved the clean data for each section. 
 
-\pagebreak 
+ 
 
 
 
@@ -484,7 +482,7 @@ vars <- c("diarrhoea", "bloody", "vomiting", "abdo", "nausea", "fever", "headach
 ```
 
 
-\pagebreak
+
 
 ```{r describe_part_2, echo = FALSE}
   # Version 2
@@ -572,7 +570,7 @@ lapply(cph[vars], AR, case = cph$case)
 To see how to combine this code to create a ready-to-present table for exporting see the appendix. 
 
 
-\pagebreak 
+ 
 
 
 
@@ -626,7 +624,7 @@ cph_incidence <- incidence(cph$dayonset, interval = 1)
 plot(cph_incidence)
 ```
 
-\pagebreak
+
 
 
 # Univariable analysis (Cohort and case control)
@@ -682,7 +680,7 @@ The epi.2by2 function requires data to be in a table format.
 We can specify that we want to calculate RRs or ORs by adding **method = "cohort.count"** or **method = "case.control"**, respectively. 
 You can do that first for looking at the risk for being a case by exposure to shrimp in a cohort study design.  
 
-\pagebreak
+
 
 
 ```{r get_2by2}
@@ -725,7 +723,7 @@ for (var in vars) {
 
 
 
-\pagebreak
+
 
 
 ## Simplified output (method 2)
@@ -981,7 +979,7 @@ outputs # Gives crude, stratum-specific and adjusted RRs
 ```
 
 
-\pagebreak
+
 
 The exact same can be done for veal (switch veal and pasta)
 
@@ -1031,221 +1029,8 @@ fisher.test(table(cph$pasta, cph$veal))
 
 
 # Integrate the analysis steps in one master script file
+
 This is easily done, if you have saved each of your analyses in a seperate script (e.g. one for cleaning, descriptive, univariable and stratified each), you can create a master script by simply using the *source* function (as we did to read in user-written code) to run each of your scripts
-
-
-\pagebreak
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Appendix 
-
-
-## Reading in datafiles to *R* from other formats (STATA and Excel)
-
-In *R* you can read datasets saved in STATA format (.dta), using a package called "haven". 
-See *??read_dta* for details
-
-```{r, eval = FALSE}
-
-library(haven)
-
-cph <- read_dta(here("data", "copenhagen_stratified.dta"))
-
-```
-
-
-
-It is also possible to read in excel files using a package called "readxl". 
-
-```{r, eval = FALSE}
-library("readxl")
-cph <- read_excel(here("data", "copenhagen_stratified.xlsx"))
-```
-
-
-
-## Optional task - Export your output to excel 
-This section produces a full descriptive table and exports it to excel.
-This is just to illustrate that you can create tables however you would like to. 
-If you are feeling confident then take a look at the code - if not just skip it!
-
-<!-- ZNK: it may be better to write to csv as opposed to excel? -->
-
-```{r, eval = FALSE}
-
-
-a <- matrix(NA, ncol = 4, nrow = 8)
-
-rownames(a) <-
-  c("student", "teacher", "1", "2", "3", "male", "female", "total")
-
-colnames(a) <-
-  c("Number", "% of Total", "Number of cases", "Attack rate (in %)")
-
-for (var in vars) {
-  b <- table(cph[, var], cph$case)
-  
-  catTotal <- rowSums(b)
-  
-  denom <- sum(b)
-  
-  props <- round(catTotal / denom * 100, digits = 1)
-  
-  cases <- b[, 2]
-  
-  AR <- round(cases / catTotal * 100, digits = 1)
-  
-  a[rownames(a) %in% names(catTotal), "Number"]  <- catTotal
-  a[rownames(a) %in% names(props), "% of Total"]  <- props
-  a[rownames(a) %in% names(cases), "Number of cases"]  <- cases
-  a[rownames(a) %in% names(AR), "Attack rate (in %)"]  <- AR
-}
-
-
-
-a
-
-z <- data.frame(unclass(a))
-
-dir.create("results")
-write.csv(z, file = here("results", "case-results.csv")
-
-
-```
-
-
-
-
-<!--
-
-## Manual epicurve construction using base plotting functions
-
-Creating an epicurve using the builtin *barplot* function is one option, as it is relatively easy to define the time axis - though getting boxes per case is a bit of a hassle.  
-Note: several lines of code have been turned to comments (# png(...) and # dev.off()), these pieces of code are used to save the plot as a picture file on your desktop, however you can run the code in your R browser without saving the picture output to a folder. 
-
-
-
-```{r, tidy = TRUE, eval = FALSE}
-# table to use in plotting 
-count<-table(cph$startdate)
-
-# define parameters to use in the image file (.png) after plotting (see ?png for help)
-aa <- 2
-h1=1800*aa
-w1=sqrt(2)*h1
-r1=300 # 300
-ps1 <- 20
-
-
-## define where and what you want to save your output picture file as
-# png(filename="C:/Users/Desktop/Outbreak module 2015/Copenhagen/epicurve.png",width=w1,height=h1,res=r1,pointsize=ps1)
-
-# regular bar plot 
-epicurve<-barplot(count, beside = TRUE, axes = FALSE, xaxt = "n", xlab = NULL, legend.text = NULL, col = "red", space = c(0,0))
-
-# axis numbering 
-axis(2, at = seq(0, max(count), by = 10),tick = TRUE, pos = 0, las = 1, cex = 1.5)
-
-axis(1, at = c(epicurve), labels = rownames(count), tick = TRUE, pos = 0)
-
-# another way of doing axis labels 
-mtext(text="Cases (n)",
-      side=2,
-      line=3,
-      cex=1.5)
-
-# turns off the plotting function and saves the output picture
-# dev.off()
-
-
-```
-
-
-
-
-
-## Creating time levels with coding rather than typing it out 
-
-```{r, eval = FALSE}
-
-a <- expand.grid(c("0","6","12", "18"), paste0("2006-11-", 10:14))
-
-b <- paste0(a$Var2," ", a$Var1)
-
-
-cph$starttime <- factor(cph$starttime, levels = b)
-```
-
--->
-
-## Using epi.2by2 for investigating dose-response relationships
-
-
-Using epi.2by2 to get odds ratios for a dose response relationship is a bit more dense than what we did above, as you need to patch together tables to feed in to the function for each dose-level. 
-Here you need case to be a factor again. 
-(it would of course be much easier to use regression for this, but this demonstrates some datahandling techniques)
-
-
-
-```{r odds_ratios}
-
-
-# change case back to a factor
-cph$case <- factor(cph$case, levels = c(1, 0))
-
-
-# create your table of counts
-
-counts <- table(cph$pastaD, cph$case)
-
-# create an empty matrix to fill with your output
-# this matrix should be the same number of rows as your counts dataset
-# you also want 3 columns to put your output in to
-output <- matrix(NA, nrow = nrow(counts), ncol = 3)
-
-# for each of the dose response levels
-for (i in 2:nrow(counts)) {
-  # create your 2by2 counts table by combining the ref group with one dose level (row)
-  input <- rbind(counts[1, ], counts[i, ])
-  
-  # feed this table to epi2by2
-  test <- epi.2by2(input,  method = "case.control")
-  
-  # overright the row of your output matrix with the relevant estimates
-  output[i, ] <- as.numeric(test$massoc$OR.strata.wald)
-  
-}
-
-# name the rows of your output accordingly
-colnames(output) <- c("OR", "lower", "upper")
-
-
-# bind your output table to your counts table
-
-counts <- cbind(counts, output)
-
-```
-
-
-
-\pagebreak 
 
 # Conclusions of the case study 
 

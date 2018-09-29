@@ -45,6 +45,11 @@ With the understanding that:
 + Notice - For any reuse or distribution, you must make clear to others the license terms of this work by keeping together this work and the current license.
 This licence is based on http://creativecommons.org/licenses/by-sa/3.0/
 
+```{r setup, include = FALSE}
+# This tells knitr to start everything from the project directory
+knitr::opts_knit$set(root.dir = here::here())
+```
+
 
 ## Descriptive analysis in *R*
 
@@ -224,37 +229,17 @@ lapply(cph[vars], AR, case = cph$case)
 To see how to combine this code to create a ready-to-present table for exporting see the appendix. 
 
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Describing time in *R*
 
 
-
-
 ### Recoding for date compatability 
+
 Date compatibility is always an issue when switching between softwares, R sometimes has a problem reading in dates from excel files, however there is user-written code which fixes these kinds of glitches. 
 
 In the current dataset it is simply a case of creating useful date variables by some data manipulation. 
 
 The variable *start* is an example of bad data collection. 
 Nevertheless it consists of numbers (1, 2 and 3); these numbers correspond to dates (11th, 12th and 13th of November 2006).
-
-
 
 ```{r}
 # Create a useful date variable from start

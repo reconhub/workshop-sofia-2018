@@ -45,8 +45,10 @@ With the understanding that:
 + Notice - For any reuse or distribution, you must make clear to others the license terms of this work by keeping together this work and the current license.
 This licence is based on http://creativecommons.org/licenses/by-sa/3.0/
 
- 
-
+```{r setup, include = FALSE}
+# This tells knitr to start everything from the project directory
+knitr::opts_knit$set(root.dir = here::here())
+```
 
 # The Alert 
 
@@ -59,11 +61,7 @@ Practically all students and teachers check the intranet on a daily basis, becau
 Symptomatic party attendees were asked to submit stool samples via their general practitioners to the local clinical microbiology laboratory where they were cultured for standard enteric bacteria. The working hypothesis at the point was that the outbreak had a viral or toxic aetiology. Norovirus is generally acknowledged as the most frequent cause of foodborne outbreaks in industrialised countries, so this would be a prime suspect.  
 In the study, the following case definition was used: a case is a person from the cohort, who presented with diarrhoea or vomiting within 48 hours of the meal. So anyone who presented with diarrhoea or vomiting from 6pm on November 11th to 5:59pm on November 13th was included as a case. Anyone with symptoms outside this time window is defined as a control as this person probably didn't become sick at the party.
 
-
-
-
 # An introduction to the R companion 
-
 
 ### Your R Workflow
 

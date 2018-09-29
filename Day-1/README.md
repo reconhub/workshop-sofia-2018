@@ -15,6 +15,26 @@ By the end of this module, the students should:
    analysis using 2x2 contingency tables
  - be familiar with functions, lapply, and for loops
 
+# Instructions
+
+1. Open the file called `copenhagen.pdf`.
+2. Double-click on the `recon-day-1.Rproj` file to open RStudio
+3. Open `reports/01-intro-clean.Rmd` and follow along with `copenhagen.pdf`.
+
+The case study has been split into four sections, following the same data set.
+In the RMarkdown files, there will be pre-written code for you to run. 
+
+As you progress through the documents, you will need to add code in order to 
+continue. The code in these places will have a comment that looks like this:
+
+```
+#!!! replace this line with code
+```
+
+You should follow the instructions written on that line and replace it with
+valid R code. You may copy and paste from `copenhagen.pdf` if you find yourself
+having trouble. 
+
 # Contributors
 
 **Conversion to RMarkdown:**

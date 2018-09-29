@@ -153,7 +153,7 @@ View(cph)
 Alternatively, you can also view your dataset by clicking on *cph* in the top right "global environment" panel of your *R studio* browser.  
 Your global environment is where you can see all the datasets, functions and other things you have running in the current session. (see figure 1 below)
 
-![Browsing your dataset in R studio](Screenshot1.png) 
+![Browsing your dataset in R studio](Screenshot1.png)
 
 ### Saving your code in R Scripts
 

@@ -129,10 +129,9 @@ Now that we know how to create this table, we can create a function with two arg
 
 ```{r get_2by2_fun}
 epi_2by2 <- function(var, case) {
-  #!!! Create a table with var and case
-  #!!! Calculate the 2x2 table from epiR::epi.2by2 with the method "cohort.count"
-  #    and save it to a variable called "res"
-  #!!! return "res"
+  counts <- table(var, case)
+  res <- epiR::epi.2by2(counts, method = "cohort.count")
+  res
 }
 ```
 

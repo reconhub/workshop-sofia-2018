@@ -74,8 +74,8 @@ library("here")
 # Factors are a special datatype, covered later - character variables are simpler
 # data frame read in and saved in R as "cph"
 
-#!!! read in the file from data/copenhagen_stratified.csv using the functions
-#    read.csv() and here::here() and place it in a variable called 'cph'
+cph <- read.csv(here::here("data", "copenhagen_stratified.csv"),
+                stringsAsFactors = FALSE)
 ```
 
 Make sure that your variables of interest are factors in the correct order. 
@@ -146,16 +146,19 @@ Like we did before, we can use these steps to write a function:
 
 ```{r risk-ratio-fun}
 strata_risk <- function(var, case, strat) {
-  #!!! Make a 3-way table with exposure of interest, the outcome and the 
-  #    stratifying variable, in that order
+  a <- table(cph$veal, cph$case, cph$pasta)
+
+  mhtable <- epiR::epi.2by2(a, method = "cohort.count")
   
-  #!!! Use the epi.2by2 function to calculate RRs (by stating method = "cohort.count")
-  
-  #!!! combine the output from RR.crude.wald, RR.strata.wald, and RR.mh.wald
-  
-  #!!! add these rownames c("Crude", "Strata 1", "Strata 0", "Adjusted")
-  
-  #!!! return the results
+  results <- rbind(
+    mhtable$massoc$RR.crude.wald,
+    mhtable$massoc$RR.strata.wald,
+    mhtable$massoc$RR.mh.wald
+  )
+
+  rownames(results) <- c("Crude", "Strata 1", "Strata 0", "Adjusted")
+
+  results
 }
 ```
 
@@ -171,8 +174,10 @@ lapply(cph[vars], strata_risk, case = cph$case, strat = cph$pasta)
 The exact same can be done for veal (switch veal and pasta)
 
 ```{r, eval = FALSE}
-#!!! List exposure variables (pasta, rocket, shrimps, ...)
-#!!! Use lapply to run strata_risk for each one using veal as strata
+# List the exposure variables
+vars <- c("pasta", "rocket", "shrimps", "champagne", "sauce")
+# run strata_risk for each one using veal as strata
+lapply(cph[vars], strata_risk, case = cph$case, strat = cph$veal)
 ```
 
 It appears that pasta confounds the association between eating veal and being 
@@ -197,10 +202,10 @@ This is easily done, if you have saved each of your analyses in a seperate scrip
 Open a new R file and save it as `runAll.R`. Inside of this script, put the following:
 
 ```
-rmarkdown::render(here::here("reports", "01-intro-clean.R"))
-rmarkdown::render(here::here("reports", "02-descriptive-stats.R"))
-rmarkdown::render(here::here("reports", "03-univariate-analyses.R"))
-rmarkdown::render(here::here("reports", "04-stratified-analyses.R"))
+rmarkdown::render(here::here("reports", "01-intro-clean.Rmd"))
+rmarkdown::render(here::here("reports", "02-descriptive-stats.Rmd"))
+rmarkdown::render(here::here("reports", "03-univariate-analyses.Rmd"))
+rmarkdown::render(here::here("reports", "04-stratified-analyses.Rmd"))
 ```
 
 

@@ -76,6 +76,13 @@ library("here")
 cph <- read.csv(here::here("data", "copenhagen_univariable.csv"), stringsAsFactors = FALSE) 
 ```
 
+```{r source_script}
+# Functions required
+
+# Adds a function to create output similar to cctable or cstable in Stata
+source(here("scripts", "single.variable.analysis.v0.2.R")) 
+```
+
 There is more than one way to create univariable tables.
 One gives you a two by two and quite a lot of info, and the other is user-written code which will provide you with nice output like STATA's cstable. 
 

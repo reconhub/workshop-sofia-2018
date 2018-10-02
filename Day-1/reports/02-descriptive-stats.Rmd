@@ -51,9 +51,18 @@ knitr::opts_knit$set(root.dir = here::here())
 ```
 
 
-## Descriptive analysis in *R*
+# Descriptive analysis in *R*
 
-If you haven't completed the previous section then you can load the following dataset for the next steps.
+## Preparing packages and data
+
+```{r load_packages, echo = TRUE, results='hide', message=FALSE, warning=FALSE}
+library("ggplot2")
+library("skimr")
+library("Hmisc")
+library("epiR")
+library("incidence")
+library("here")
+```
 
 
 ```{r read_clean_data}

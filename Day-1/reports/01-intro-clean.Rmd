@@ -213,14 +213,14 @@ You can add new variables to a data frame by using the `$` sign after the datase
 # in this example the first line of the output is the age and the second is the frequency.
 table(cph$age)
 # summary gives you more detailed statistics as in stata
-#!!! summarize age 
+summary(cph$age)
 ```
 
 Often, plotting the data can be much more informative. For example, instead of using table, we can plot a boxplot of age to see if we have any outliers:
 
 ```{r boxplot_of_age}
 
-#!!! add a boxplot command here
+boxplot(cph$age)
 
 ```
 
@@ -241,8 +241,8 @@ summary(cph$incubation)
   # you can label the table by adding labels
 table(meal = cph$meal, tuna = cph$tuna)
 
-#!!! create a table by meal and bread
-#!!! create a table by meal and veal
+table(meal = cph$meal, bread = cph$bread)
+table(meal = cph$meal, veal = cph$veal)
 
 # people with day of onset but no symptoms
   # is.na() returns True/False if value is missing
@@ -269,7 +269,7 @@ table(onset = cph$start[no_symptoms(cph$diarrhoea) &
 ```{r data_cleaning}
 # correct mistakes in age
 cph$age[cph$age == 8]   <- 18
-#!!! change all ages that are 180 to 18
+cph$age[cph$age == 180] <- 18
 
 
 # calculate your own age variable based on birthday
@@ -280,12 +280,15 @@ cph$age2 <- round(as.numeric(cph$age2), digits = 0)
 
 
 # correct mistake in incubation time 
-#!!! change incubation times equal to 210 to 21
+cph$incubation[cph$incubation == 210] <- 21
 
-#!!! Correct mistake regarding onset start
-  #!!! Those who have no symptoms should also not have an onset date
-  #!!! So this is selecting those that are 0 or empty for each of the three symptoms
-  #!!! We can use the no_symptoms function we defined above and place them into a vector
+# Correct mistake regarding onset start
+  # Those who have no symptoms should also not have an onset date
+  # So this is selecting those that are 0 or empty for each of the three symptoms
+  # We can use the no_symptoms function we defined above and place them into a vector
+symptomless_dvb <- no_symptoms(cph$diarrhoea) & no_symptoms(cph$vomiting) & no_symptoms(cph$bloody)
+table(symptomless_dvb) # how many were symptomless?
+cph$start[symptomless_dvb] <- NA
 
 # re-code sex in to binary
 cph$sex <- ifelse(cph$sex == "male", 1, 0)
@@ -298,11 +301,17 @@ cph$sex <- as.numeric(cph$sex)
 
 
 ```{r case_definition}
-#!!! create new variable where people who have diarrhoea or vomiting get a 1 and all others a 0
+# create new variable where people who have diarrhoea or vomiting get a 1 and all others a 0
+cph$case <- 0
+cph$case[cph$diarrhoea == 1 | cph$vomiting == 1] <- 1
 
-#!!! replace those who had onset before 11th nov 18:00 or after 13th nov 18:00
+# replace those who had onset before 11th nov 18:00 or after 13th nov 18:00
+before_11_nov <- cph$start == 1 & cph$starthour < 4
+after_13_nov <- (cph$start == 3 & cph$starthour > 3) | cph$start > 3
 
-#!!! set all cases that did not eat to missing
+cph$case[cph$case == 1 & (before_11_nov | after_13_nov)] <- 0
+
+cph$case[is.na(cph$meal) | cph$meal == 0] <- NA
 ```
 
 
@@ -367,16 +376,4 @@ identical(cph, cph2)
 ```
 
 Throughout the tutorial, we have saved the clean data for each section. 
-
- 
-
-
-
-
-
-
-
-
-
-
 

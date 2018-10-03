@@ -79,12 +79,12 @@ cph <- read.csv(here::here("data", "copenhagen_univariable.csv"), stringsAsFacto
 ```{r source_script}
 # Functions required
 
-# Adds a function to create output similar to cctable or cstable in Stata
+# Adds a function to create a nice table for univariable analysis
 source(here("scripts", "single.variable.analysis.v0.2.R")) 
 ```
 
 There is more than one way to create univariable tables.
-One gives you a two by two and quite a lot of info, and the other is user-written code which will provide you with nice output like STATA's cstable. 
+One gives you a two by two and quite a lot of info, and the other is user-written code which will provide you with nicer output. 
 
 Think about which variables you might want to include when checking for effect modification or confounding. 
 One common strategy is to base this decision on the univariable results obtained and a p-value threshold of 0.25. 
@@ -108,7 +108,7 @@ for (var in vars) {
 ```
 
 
-The `epi.2by2()` function from the *epiR* package can be used to calculate both RRs and ORs.
+The `epi.2by2()` function from the *epiR* package can be used to calculate both risk ratios (RRs) and odds ratios (ORs).
 You can find out more information on the function by writing `?epiR::epi.2by2()` in the console. 
 The `epiR::epi.2by2()` function requires data to be in a table format. 
 We can specify that we want to calculate RRs or ORs by adding **method = "cohort.count"** or **method = "case.control"**, respectively. 
@@ -135,7 +135,7 @@ epi_2by2 <- function(var, case) {
 }
 ```
 
-Now we can use this function to calcualte the epi tables for each variable:
+Now we can use this function to calculate the epi tables for each variable:
 
 ```{r lotta_2by2s}
 # vector of variables you want to run
@@ -207,7 +207,7 @@ wilcox.test(cph$class, cph$case)
 ## Is there a difference between age in males and females? 
 
 ```{r test_sex}
-# Using a wilcox test
+# Using a wilcoxon test
 wilcox.test(cph$age, cph$sex)
 
 # Using a t-test to see difference in mean if normally distributed 
@@ -222,7 +222,7 @@ t.test(cph$age ~ cph$sex)
 Look at the food items that seem most suspicious to you. 
 Hint: it's pasta and veal
 
-There is two possible ways to do this. The first is to use the wilcox.test again, and the second is to calculate ORs using the `epi.2by2()` function. Using the `epi.2by2()` function for dose responses is a bit more dense (traditionally this would be done using regression), so we have not shown it here; if you would like to see the code for this it is available in the appendix. 
+There are two possible ways to do this. The first is to use the wilcox.test again, and the second is to calculate ORs using the `epi.2by2()` function. Using the `epi.2by2()` function for dose responses is a bit more dense (traditionally this would be done using regression), so we have not shown it here; if you would like to see the code for this it is available in the appendix. 
 
 
 Here, we present a function in a different form to test this. Instead of taking
@@ -241,7 +241,7 @@ test_DR <- function(var, case = "case", dataset) {
   # e.g. "pastaD ~ case" which can then be inserted in the wilcox.test to get dose response
   form <- as.formula(paste0(var, "~", "case"))
   
-  # put your formula above in to wilcox using the reduced dataset
+  # put your formula above into wilcox using the reduced dataset
   res <- wilcox.test(form, data = dataset)
   
   res

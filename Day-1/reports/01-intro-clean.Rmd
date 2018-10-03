@@ -68,7 +68,7 @@ In the study, the following case definition was used: a case is a person from th
 We will be using RStudio projects to separate our sessions into distinct workflows.
 For each session, you will open R by double-clicking on the `.Rproj` file, or opening RStudio and selecting the session from the upper-right-hand dropdown menu.
 
-> Just as in STATA you can set a folder to be your working directory (using the setwd command), but we will not be using this because it makes transferring between computers difficult (see <https://www.tidyverse.org/articles/2017/12/workflow-vs-script/> for details). Instead, we will be using the RStudio project files and the 'here' package to keep track of files.
+> You can set a folder to be your working directory (using the setwd command), but we will not be using this because it makes transferring between computers difficult (see <https://www.tidyverse.org/articles/2017/12/workflow-vs-script/> for details). Instead, we will be using the RStudio project files and the 'here' package to keep track of files.
 
 For this case study I have put an "MSF Training" folder on my desktop and organised it in to sub-folders for each session.
 
@@ -107,7 +107,7 @@ library("here")
 ```{r source_script}
 # Functions required
 
-# Adds a function to create output similar to cctable or cstable in Stata
+# Adds a function that creates a nice table for output
 source(here("scripts", "single.variable.analysis.v0.2.R")) 
 ```
 

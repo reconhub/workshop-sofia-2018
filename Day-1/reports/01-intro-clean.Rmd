@@ -139,33 +139,34 @@ cph <- read.csv(here::here("data", "copenhagen_raw.csv"), stringsAsFactors = FAL
 
 ### Browsing your dataset 
 
-*R studio* has the nice feature that everything is in one browser window, so you can browse your dataset and your code without having to switch between browser windows. 
+*R Studio* has the nice feature that everything is in one browser window, so you can browse your dataset and your code without having to switch between browser windows. 
 
 ```{r view_the_data, eval = FALSE}
 # to browse your data, use the View command
 View(cph)
 ```
 
-Alternatively, you can also view your dataset by clicking on *cph* in the top right "global environment" panel of your *R studio* browser.  
+Alternatively, you can also view your dataset by clicking on *cph* in the top right "global environment" panel of your *R Studio* browser.  
 Your global environment is where you can see all the datasets, functions and other things you have running in the current session. (see figure 1 below)
 
-![Browsing your dataset in R studio](Screenshot1.png)
+![Browsing your dataset in R Studio](Screenshot1.png)
 
 ### Saving your code in R Scripts
 
-R scripts are the equivalent of .do files in STATA. You can save your code in these R scripts. (see figure 2 below) 
+You can save your code in R scripts. (see figure 2 below) 
 You can write comments in your code using "`# `"
 
 ![Creating a new R-script in R studio](Screenshot2.png)
 
-## Log-files 
+### History
 
-These do not exist in R, however there is the History tab, in the global environment panel in the top right of your browser.
+The History tab, in the global environment panel in the top right of your browser, shows you all the commands you have previously run. 
+
 If you click on the code in the History tab, it will re-run.
 
 ### Describing your dataset 
 
-You can view the structure of your data set using the following commands. Each of these commands can be run for individual variables also. You can refer to an individual variable of a data set by using the `$`, for example, if you wanted to obtain a summary of the age variable, then you would write `summary(cph$age)`.
+You can view the structure of your data set using the following commands. Each of these commands can be run for individual variables also. You can refer to an individual variable of a dataset by using the `$`, for example, if you wanted to obtain a summary of the age variable, then you would write `summary(cph$age)`.
 
 ```{r describe, eval = FALSE}
 # str provides an overview of the number of observations and variable types

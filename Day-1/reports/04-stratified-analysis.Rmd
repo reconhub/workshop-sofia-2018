@@ -204,8 +204,8 @@ Open a new R file and save it as `runAll.R`. Inside of this script, put the foll
 ```
 rmarkdown::render(here::here("reports", "01-intro-clean.Rmd"))
 rmarkdown::render(here::here("reports", "02-descriptive-stats.Rmd"))
-rmarkdown::render(here::here("reports", "03-univariate-analyses.Rmd"))
-rmarkdown::render(here::here("reports", "04-stratified-analyses.Rmd"))
+rmarkdown::render(here::here("reports", "03-univariate-analysis.Rmd"))
+rmarkdown::render(here::here("reports", "04-stratified-analysis.Rmd"))
 ```
 
 

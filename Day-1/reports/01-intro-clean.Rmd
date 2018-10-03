@@ -76,7 +76,7 @@ For this case study I have put an "MSF Training" folder on my desktop and organi
 
 > nb.you can of course organise your files however you want and set your working directory accordingly - the simplest case is to put all datasets in a folder called "Outbreak module 2015", and not separate in to sessions
 
-> side note: see appendix if you would like to read in STATA datafiles directly*
+> side note: see appendix if you would like to read in STATA (.dta) datafiles directly*
 
 
 ### Installing packages and functions
@@ -111,11 +111,7 @@ library("here")
 source(here("scripts", "single.variable.analysis.v0.2.R")) 
 ```
 
-R and Stata have minor differences in default settings and methods. In this document we will follow the Stata analysis as closely as possible, but small and usually unimportant differences may be noted between the statistical findings in R and those in Stata. At some points additional steps (which would usually be optional in R) will be taken to produce output which is comparable to that of Stata.
-
-The epicurve function allows creation of easily formatted epicurves. To find out more about the function, first load it as above and then click on function in the **Global Environment** tab on the right of the R Studio window. The **single variable analysis** function allows calculation of attack rates of multiple variables at one time and provides similar output to the cctable and cstable commands in Stata.
-
-You will work with Stata.dta data sets which can be loaded into R with the "haven" or "readstata13" packages. The appropriate functions to use will be indicated.
+The epicurve function allows creation of easily formatted epicurves. To find out more about the function, first load it as above and then click on function in the **Global Environment** tab on the right of the R Studio window. The **single variable analysis** function allows calculation of attack rates of multiple variables at one time.
 
 R can hold one or many data sets in memory simultaneously, so there is usually no need to save intermediate files or close and re-open datasets.
 

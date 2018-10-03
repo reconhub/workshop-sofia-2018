@@ -70,7 +70,7 @@ library("here")
 # Select separator as comma (sep=",")
 # do not import 'string' variables as 'Factors' (stringsAsFactors=FALSE) 
 # Factors are a special datatype, covered later - character variables are simpler
-# data frame read in and saved in R as "cph"
+# dataframe read in and saved in R as "cph"
 
 
 cph <- read.csv(here::here("data", "copenhagen_descriptive.csv"),
@@ -134,7 +134,7 @@ twobytwo(cph$bloody[cph$case == 1])
 
 Of course, we have several variables, we don't necessarily want to write this
 over and over, so we will use a function called `lapply()`. This function takes
-a data frame, list, or vector, applies a function over each variable separately,
+a dataframe, list, or vector, applies a function over each variable separately,
 and then returns a list of results. If we were to use `lapply()` to get the 
 results from above, we might do this:
 
@@ -243,7 +243,7 @@ To see how to combine this code to create a ready-to-present table for exporting
 
 ### Recoding for date compatability 
 
-Date compatibility is always an issue when switching between softwares, R sometimes has a problem reading in dates from excel files, however there is user-written code which fixes these kinds of glitches. 
+Date compatibility is always an issue when switching between softwares, *R* sometimes has a problem reading in dates from excel files, however there is user-written code which fixes these kinds of glitches. 
 
 In the current dataset it is simply a case of creating useful date variables by some data manipulation. 
 

@@ -1,49 +1,15 @@
 ---
-title: Outbreak of gastroenteritis after a high school dinner in Copenhagen, Denmark,November
-  2006
+title: "Outbreak of gastroenteritis after a high school dinner in Copenhagen, Denmark,November 2006 (part 1)"
 author: "Zhian N. Kamvar, Janetta Skarp, Alexander Spina, and Patrick Keating"
-output:
-  html_document
+authors: ["Zhian N. Kamvar", "Janetta Skarp", "Alexander Spina", "Patrick Keating"]
+categories: ["practicals"]
+tags: ["epicurve", "single variable analysis", "2x2 tables"]
+date: 2018-10-04
+# image: img/highres/ebola.jpg
+slug: copenhagen-introduction
+showonlyimage: true
+licenses: CC-BY
 ---
-
-The following code has been adapted to *R* for learning purposes. The initial contributors and copyright license are listed below. All copyrights and licenses of the original document apply here as well. 
-
-**Contributors to *R* code:**  
-Daniel Gardiner(PHE) and Lukas Richter (AGES)
-
-# Copyright and license
-This case study was designed under an ECDC service contract for the development of training material (2010). The data were slightly modified for training purposes.
-
-**Source :**
-This case study is based on an investigation conducted by Jurgita Pakalniskiene, Gerhard Falkenhorst (Statens Serum Institut, Copenhagen) and colleagues
-
-**Authors:**
-Jurgita Pakalniskiene, Gerhard Falkenhorst, Esther Kissling, Gilles Desvé.
-
-**Reviewers:**
-Marta Valenciano, Alain Moren.
-
-**Adaptions for previous modules:**
-Irina Czogiel, Kristin Tolksdorf, Michaela Diercke, Sybille Somogyi, Christian Winter, Sandra Dudareva-Vizule with the help of Katharina Alpers, Alicia Barrasa, Androulla Efstratiou, Steen Ethelberg, Annette Heißenhuber, Aftab Jasir, Ioannis Karagiannis and Pawel Stefanoff
-
-
-**You are free:**
-
-+ to Share - to copy, distribute and transmit the work
-+ to Remix - to adapt the work
-Under the following conditions:
-+ Attribution - You must attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work). The best way to do this is to keep as it is the list of contributors: sources, authors and reviewers.
-+ Share Alike - If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one. Your changes must be documented. Under that condition, you are allowed to add your name to the list of contributors.
-+ You cannot sell this work alone but you can use it as part of a teaching.
-With the understanding that:
-+ Waiver - Any of the above conditions can be waived if you get permission from the copyright holder.
-+ Public Domain - Where the work or any of its elements is in the public domain under applicable law, that status is in no way affected by the license.
-+ Other Rights - In no way are any of the following rights affected by the license:
-+ Your fair dealing or fair use rights, or other applicable copyright exceptions and limitations;
-+ The author's moral rights;
-+ Rights other persons may have either in the work itself or in how the work is used, such as publicity or privacy rights.
-+ Notice - For any reuse or distribution, you must make clear to others the license terms of this work by keeping together this work and the current license.
-This licence is based on http://creativecommons.org/licenses/by-sa/3.0/
 
 ```{r setup, include = FALSE}
 # This tells knitr to start everything from the project directory
@@ -374,3 +340,51 @@ identical(cph, cph2)
 
 Throughout the tutorial, we have saved the clean data for each section. 
 
+
+## Part 2
+
+Now that the data have been cleaned and inspected, we can move on to 
+[descriptive statistics in part 2](./copenhagen-descriptive.html).
+
+
+
+# About this document
+
+This code has been adapted to *R* for learning purposes. The initial contributors and copyright license are listed below. All copyrights and licenses of the original document apply here as well. 
+
+**Contributors to *R* code:**  
+Zhian N. Kamvar, Daniel Gardiner (PHE), and Lukas Richter (AGES)
+
+# Copyright and license
+This case study was designed under an ECDC service contract for the development of training material (2010). The data were slightly modified for training purposes.
+
+**Source :**
+This case study is based on an investigation conducted by Jurgita Pakalniskiene, Gerhard Falkenhorst (Statens Serum Institut, Copenhagen) and colleagues
+
+**Authors:**
+Jurgita Pakalniskiene, Gerhard Falkenhorst, Esther Kissling, Gilles Desvé.
+
+**Reviewers:**
+Marta Valenciano, Alain Moren.
+
+**Adaptions for previous modules:**
+Irina Czogiel, Kristin Tolksdorf, Michaela Diercke, Sybille Somogyi, Christian Winter, Sandra Dudareva-Vizule with the help of Katharina Alpers, Alicia Barrasa, Androulla Efstratiou, Steen Ethelberg, Annette Heißenhuber, Aftab Jasir, Ioannis Karagiannis and Pawel Stefanoff
+
+
+**You are free:**
+
++ to Share - to copy, distribute and transmit the work
++ to Remix - to adapt the work
+Under the following conditions:
++ Attribution - You must attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work). The best way to do this is to keep as it is the list of contributors: sources, authors and reviewers.
++ Share Alike - If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one. Your changes must be documented. Under that condition, you are allowed to add your name to the list of contributors.
++ You cannot sell this work alone but you can use it as part of a teaching.
+With the understanding that:
++ Waiver - Any of the above conditions can be waived if you get permission from the copyright holder.
++ Public Domain - Where the work or any of its elements is in the public domain under applicable law, that status is in no way affected by the license.
++ Other Rights - In no way are any of the following rights affected by the license:
++ Your fair dealing or fair use rights, or other applicable copyright exceptions and limitations;
++ The author's moral rights;
++ Rights other persons may have either in the work itself or in how the work is used, such as publicity or privacy rights.
++ Notice - For any reuse or distribution, you must make clear to others the license terms of this work by keeping together this work and the current license.
+This licence is based on http://creativecommons.org/licenses/by-sa/3.0/

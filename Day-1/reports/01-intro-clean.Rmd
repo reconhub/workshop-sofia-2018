@@ -61,14 +61,14 @@ Practically all students and teachers check the intranet on a daily basis, becau
 Symptomatic party attendees were asked to submit stool samples via their general practitioners to the local clinical microbiology laboratory where they were cultured for standard enteric bacteria. The working hypothesis at the point was that the outbreak had a viral or toxic aetiology. Norovirus is generally acknowledged as the most frequent cause of foodborne outbreaks in industrialised countries, so this would be a prime suspect.  
 In the study, the following case definition was used: a case is a person from the cohort, who presented with diarrhoea or vomiting within 48 hours of the meal. So anyone who presented with diarrhoea or vomiting from 6pm on November 11th to 5:59pm on November 13th was included as a case. Anyone with symptoms outside this time window is defined as a control as this person probably didn't become sick at the party.
 
-# An introduction to the R companion 
+# An introduction to the *R* companion 
 
-### Your R Workflow
+### Your *R* Workflow
 
 We will be using RStudio projects to separate our sessions into distinct workflows.
 For each session, you will open R by double-clicking on the `.Rproj` file, or opening RStudio and selecting the session from the upper-right-hand dropdown menu.
 
-> Just as in STATA you can set a folder to be your working directory (using the setwd command), but we will not be using this because it makes transferring between computers difficult (see <https://www.tidyverse.org/articles/2017/12/workflow-vs-script/> for details). Instead, we will be using the RStudio project files and the 'here' package to keep track of files.
+> You can set a folder to be your working directory (using the setwd command), but we will not be using this because it makes transferring between computers difficult (see <https://www.tidyverse.org/articles/2017/12/workflow-vs-script/> for details). Instead, we will be using the RStudio project files and the 'here' package to keep track of files.
 
 For this case study I have put an "MSF Training" folder on my desktop and organised it in to sub-folders for each session.
 
@@ -76,7 +76,7 @@ For this case study I have put an "MSF Training" folder on my desktop and organi
 
 > nb.you can of course organise your files however you want and set your working directory accordingly - the simplest case is to put all datasets in a folder called "Outbreak module 2015", and not separate in to sessions
 
-> side note: see appendix if you would like to read in STATA datafiles directly*
+> side note: see appendix if you would like to read in STATA (.dta) datafiles directly*
 
 
 ### Installing packages and functions
@@ -107,27 +107,23 @@ library("here")
 ```{r source_script}
 # Functions required
 
-# Adds a function to create output similar to cctable or cstable in Stata
+# Adds a function that creates a nice table for output
 source(here("scripts", "single.variable.analysis.v0.2.R")) 
 ```
 
-R and Stata have minor differences in default settings and methods. In this document we will follow the Stata analysis as closely as possible, but small and usually unimportant differences may be noted between the statistical findings in R and those in Stata. At some points additional steps (which would usually be optional in R) will be taken to produce output which is comparable to that of Stata.
+The epicurve function allows creation of easily formatted epicurves. To find out more about the function, first load it as above and then click on function in the **Global Environment** tab on the right of the R Studio window. The **single variable analysis** function allows calculation of attack rates of multiple variables at one time.
 
-The epicurve function allows creation of easily formatted epicurves. To find out more about the function, first load it as above and then click on function in the **Global Environment** tab on the right of the R Studio window. The **single variable analysis** function allows calculation of attack rates of multiple variables at one time and provides similar output to the cctable and cstable commands in Stata.
-
-You will work with Stata.dta data sets which can be loaded into R with the "haven" or "readstata13" packages. The appropriate functions to use will be indicated.
-
-R can hold one or many data sets in memory simultaneously, so there is usually no need to save intermediate files or close and re-open datasets.
+*R* can hold one or many datasets in memory simultaneously, so there is usually no need to save intermediate files or close and re-open datasets.
 
 
  
 
 
-# Data management and *R scripts*
+# Data management and *R* scripts
 
 ### Reading in datasets
 
-Open the data set **copenhagen_raw.csv** using the `read.csv()` command.  
+Open the dataset **copenhagen_raw.csv** using the `read.csv()` command.  
 It is also possible to import datasets from other formats, such as Excel; see appendix for example. 
 Datasets in *R* are stored and can be referred to using the name it is saved as (in our case "cph").
 
@@ -136,40 +132,41 @@ Datasets in *R* are stored and can be referred to using the name it is saved as 
 # Select separator as comma (sep=",")
 # do not import 'string' variables as 'Factors' (stringsAsFactors=FALSE) 
 # Factors are a special datatype, covered later - character variables are simpler
-# data frame read in and saved in R as "cph"
+# dataframe read in and saved in R as "cph"
 
 cph <- read.csv(here::here("data", "copenhagen_raw.csv"), stringsAsFactors = FALSE)
 ```
 
 ### Browsing your dataset 
 
-*R studio* has the nice feature that everything is in one browser window, so you can browse your dataset and your code without having to switch between browser windows. 
+*R Studio* has the nice feature that everything is in one browser window, so you can browse your dataset and your code without having to switch between browser windows. 
 
 ```{r view_the_data, eval = FALSE}
 # to browse your data, use the View command
 View(cph)
 ```
 
-Alternatively, you can also view your dataset by clicking on *cph* in the top right "global environment" panel of your *R studio* browser.  
+Alternatively, you can also view your dataset by clicking on *cph* in the top right "global environment" panel of your *R Studio* browser.  
 Your global environment is where you can see all the datasets, functions and other things you have running in the current session. (see figure 1 below)
 
-![Browsing your dataset in R studio](Screenshot1.png)
+![Browsing your dataset in R Studio](Screenshot1.png)
 
 ### Saving your code in R Scripts
 
-R scripts are the equivalent of .do files in STATA. You can save your code in these R scripts. (see figure 2 below) 
+You can save your code in R scripts. (see figure 2 below) 
 You can write comments in your code using "`# `"
 
 ![Creating a new R-script in R studio](Screenshot2.png)
 
-## Log-files 
+### History
 
-These do not exist in R, however there is the History tab, in the global environment panel in the top right of your browser.
+The History tab, in the global environment panel in the top right of your browser, shows you all the commands you have previously run. 
+
 If you click on the code in the History tab, it will re-run.
 
 ### Describing your dataset 
 
-You can view the structure of your data set using the following commands. Each of these commands can be run for individual variables also. You can refer to an individual variable of a data set by using the `$`, for example, if you wanted to obtain a summary of the age variable, then you would write `summary(cph$age)`.
+You can view the structure of your dataset using the following commands. Each of these commands can be run for individual variables also. You can refer to an individual variable of a dataset by using the `$`, for example, if you wanted to obtain a summary of the age variable, then you would write `summary(cph$age)`.
 
 ```{r describe, eval = FALSE}
 # str provides an overview of the number of observations and variable types
@@ -190,7 +187,7 @@ Hmisc::describe(cph)
 
 ## Check the dataset "Copenhagen.csv"
 
-Using the "table" and "summary" commands, you can get the equivalent of "tabulate" and "summarize" in STATA  
+Using the "table" command, you can get information on how the counts of cases are split across a variable. Using the "summary" command, you can obtain summary measures, such as the median and quantiles.
 In the example below we look at age in the cph dataset.  
 
 You can examine a variable within a dataset using the `$` sign and then the variable name (e.g. `cph$age`). 
@@ -199,20 +196,20 @@ For example: `cph[, "age"]` gives you the variable age as a vector, or `cph[2:4,
 
 You can subset a dataset using `[...]` in combination with double-equals (`==`), does not equal (`!=`), and less or greater than (`<`, `>`).
     
-In R, when defining the filter this can be both numerical or text (i.e. the gender example). 
+In *R*, when defining the filter this can be both numerical or text (i.e. the gender example). 
 In order to combine multiple filtering commands in to one selection you can use the "`|`" (bar not capital i) or "`&`" symbols. 
 The **`|`** stands for **or** whereas the **`&`** stands for **and**. 
 
 To select cases which are empty, use `is.na()`, for those which are not, `!is.na(...)`. 
 The exclamation mark ("`!`") implies "not" in this situation. 
 
-You can add new variables to a data frame by using the `$` sign after the dataset name and writing a name not already in the dataset, then defining what should go in that variable.
+You can add new variables to a dataframe by using the `$` sign after the dataset name and writing a name not already in the dataset, then defining what should go in that variable.
 
 ```{r basic_frequency_tables}
 # table will give a very basic frequency table (counts), 
 # in this example the first line of the output is the age and the second is the frequency.
 table(cph$age)
-# summary gives you more detailed statistics as in stata
+# summary gives you more detailed statistics
 summary(cph$age)
 ```
 
@@ -346,9 +343,9 @@ cph <- cph[!is.na(cph$case), ]
 
 
 
-### saving cleaned data 
+### Saving cleaned data 
 
-You can save your cleaned data set in two ways:
+You can save your cleaned dataset in two ways:
 
  1. as a flat csv file.
  2. as a binary R data file (`*.rds`).
@@ -356,7 +353,7 @@ You can save your cleaned data set in two ways:
 Saving as a flat csv file means that it's easier to inspect and move the data between non-R programs, but you lose any special formatting or attributes you may have attached to it. 
 Saving as an R data file allows you to seamlessly move data between R sessions without worry that it will accidentally change formatting. 
 
-Saving your intermediate, cleaned data set allows you to perform multi-facetted analyses with the same data set and avoid having to re-clean it over and over again. 
+Saving your intermediate, cleaned dataset allows you to perform multi-facetted analyses with the same dataset and avoid having to re-clean it over and over again. 
 <!-- You can save your cleaned dataset as an R datafile (.Rda) using the *save* command and re-load the same dataset using the *load* command.  -->
 <!-- In reality you would never do this; your code should be stand-alone in that raw data is read and cleaned and analysis comes thereafter.  -->
 <!-- But if you wanted to, this is how you would do it.  -->

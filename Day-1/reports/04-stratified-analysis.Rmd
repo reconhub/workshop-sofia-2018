@@ -92,8 +92,7 @@ for (var in vars) {
 }
 ```
 
-Stata users could use the csinter function to identify effect modifiers/confounders. 
-The `epi.2by2()` function in the *epiR* package provides similar functionality. 
+The `epi.2by2()` function in the *epiR* package can be used to identify effect modifiers/confounders. 
 
 ```{r three_way_table}
 # Make a 3-way table with exposure of interest, the outcome and the stratifying variable, in that order
@@ -197,7 +196,7 @@ fisher.test(table(cph$pasta, cph$veal))
 
 # Integrate the analysis steps in one master script file
 
-This is easily done, if you have saved each of your analyses in a seperate script (e.g. one for cleaning, descriptive, univariable and stratified each), you can create a master script by using the `rmarkdown::render()` function. 
+This is easily done, if you have saved each of your analyses in a separate script (e.g. one for cleaning, descriptive, univariable and stratified each), you can create a master script by using the `rmarkdown::render()` function. 
 
 Open a new R file and save it as `runAll.R`. Inside of this script, put the following:
 
@@ -254,20 +253,20 @@ ETEC is defined by the expression of one or more enterotoxins. Two such classes 
 Infection with ETEC can cause profuse watery diarrhea and abdominal cramping. Illness develops somewhat quicker than for other bacterial enteric infections, because of the presence of the toxins. Symptoms appear 1-3 days after exposure and usually last 3-4 days. Some infections may take a week or longer to resolve. Symptoms rarely last more than 3 weeks. Most patients recover with supportive measures alone and do not require hospitalization or antibiotics.
 Diagnostics is not easily performed; most laboratories do not test for ETEC.
 
-Note that the field of diarrhoeagenic E. coli involves other types also. E. coli constitute a large group of bacteria that occur naturally in the intestines of humans and animals. Most are non-pathogenic. However, several (six are generally recognized) groups of diarrhoea causing E. coli, exist. These include ETEC, but also other groups, among which are:
+Note that the field of diarrhoeagenic *E. coli* involves other types also. *E. coli* constitute a large group of bacteria that occur naturally in the intestines of humans and animals. Most are non-pathogenic. However, several (six are generally recognized) groups of diarrhoea causing *E. coli*, exist. These include ETEC, but also other groups, among which are:
 
 
-+EPEC (enteropathogenic E. coli), cause diarrhoea through an infectious mechanism not involving toxins. It mostly affects children under the age of 2. Is transmitted from person-to-person, sometimes via foods.
-+ STEC, (shiga toxin producing E. coli), STEC (also known as VTEC and EHEC) are similar to EPECs in many ways, but additionally express shiga toxins. Because of this, these strains may cause HUS, haemolytic uremic syndrome.
++EPEC (enteropathogenic *E. coli*), cause diarrhoea through an infectious mechanism not involving toxins. It mostly affects children under the age of 2. Is transmitted from person-to-person, sometimes via foods.
++ STEC, (shiga toxin producing *E. coli*), STEC (also known as VTEC and EHEC) are similar to EPECs in many ways, but additionally express shiga toxins. Because of this, these strains may cause HUS, haemolytic uremic syndrome.
 
 ### Food sample results
 
-ETEC can be very difficult to isolate from food samples. Not isolating ETEC therefore does not exclude that ETEC was present in the sample. It is just extremely difficult to find it among all the other E.coli (a bit like looking for a needle in a haystack). In fact the presence of very high counts of generic E. coli in the food, suggests that ETEC was also there.
-One strategy to increase the success would be to use an enrichment step. That means letting the bacteria grow - before trying to isolate ETEC - for some hours under conditions, where growth of ETEC would be favoured above other types of E. coli (if such conditions can be established). Or, if for instance it was known that the ETEC strain isolated from cases was resistant to a specific set of antibiotics, this could be utilized in the isolation process, by growing the food extracts in a medium containing these antibiotics. An alternative strategy would be to use PCRs directly addressing the ETECs or to detect the toxins directly. However, as the pathogenic ETEC likely were present in small amounts, this would also be difficult.
+ETEC can be very difficult to isolate from food samples. Not isolating ETEC therefore does not exclude that ETEC was present in the sample. It is just extremely difficult to find it among all the other E.coli (a bit like looking for a needle in a haystack). In fact the presence of very high counts of generic *E. coli* in the food, suggests that ETEC was also there.
+One strategy to increase the success would be to use an enrichment step. That means letting the bacteria grow - before trying to isolate ETEC - for some hours under conditions, where growth of ETEC would be favoured above other types of *E. coli* (if such conditions can be established). Or, if for instance it was known that the ETEC strain isolated from cases was resistant to a specific set of antibiotics, this could be utilized in the isolation process, by growing the food extracts in a medium containing these antibiotics. An alternative strategy would be to use PCRs directly addressing the ETECs or to detect the toxins directly. However, as the pathogenic ETEC likely were present in small amounts, this would also be difficult.
 
 ### PFGE results 
 
-The four Salmonella Anatum strains were found to have the same PFGE profile and 100% identity on the dendogram. The S. Anatum isolate found in the food was also typed by PFGE and found to have the same profile. The other strains show greater diversity within the dendogram confirming that they are distinguishable strains.
+The four *Salmonella anatum* strains were found to have the same PFGE profile and 100% identity on the dendogram. The *S. anatum* isolate found in the food was also typed by PFGE and found to have the same profile. The other strains show greater diversity within the dendogram confirming that they are distinguishable strains.
 Concerning ETEC, sixteen of the 17 O92:H- isolates were indistinguishable by PFGE whereas the PFGE profile of the remaining O92:H- isolate differed from the others by a few bands.
 
 ## Conclusions of the investigation 

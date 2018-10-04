@@ -270,7 +270,12 @@ This code has been adapted to *R* for learning purposes. The initial contributor
 **Contributors to *R* code:**  
 Zhian N. Kamvar, Daniel Gardiner (PHE), and Lukas Richter (AGES)
 
-# Copyright and license
+## Citation
+
+Pakalniskiene, J., G. Falkenhorst, M. Lisby, S. B. Madsen, K. E. P. Olsen, E. M. Nielsen, A. Mygh, Jeppe Boel, and K. Mølbak. "A foodborne outbreak of enterotoxigenic E. coli and Salmonella Anatum infection after a high-school dinner in Denmark, November 2006."
+Epidemiology & Infection 137, no. 3 (2009): 396-401. [doi: 10.1017/S0950268808000484](https://doi.org/10.1017/S0950268808000484)
+
+## Copyright and license
 This case study was designed under an ECDC service contract for the development of training material (2010). The data were slightly modified for training purposes.
 
 **Source :**
@@ -303,4 +308,3 @@ With the understanding that:
 + Rights other persons may have either in the work itself or in how the work is used, such as publicity or privacy rights.
 + Notice - For any reuse or distribution, you must make clear to others the license terms of this work by keeping together this work and the current license.
 This licence is based on http://creativecommons.org/licenses/by-sa/3.0/
-

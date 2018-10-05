@@ -99,7 +99,7 @@ What variables does your dataset contain?
 Identify variables with missing values (variables that have a records with a value of 9). Recode these to NA.
 
 ### e) Save your new dataset
-As a csv file named **tira_clean**.
+As a csv file named **stegen_clean**.
 
 \newpage
 # Help
@@ -130,7 +130,7 @@ library("incidence")
 <summary> <b> b) Read in the dataset for this practical </b> </summary>
 
 ```{r stegen_hw_difficult-4, results = 'hide'}
-tira_data <- read.csv(here::here("data", "tirav12.csv"), stringsAsFactors = FALSE)
+stegen_data <- read.csv(here::here("data", "stegen_raw.csv"), stringsAsFactors = FALSE)
 ```
 </details>
 
@@ -140,10 +140,10 @@ tira_data <- read.csv(here::here("data", "tirav12.csv"), stringsAsFactors = FALS
 
 ```{r stegen_hw_difficult-5, eval = FALSE}
 # to browse your data, use the View command
-View(tira_data)
+View(stegen_data)
 ```
 
-Alternatively, you can also view your dataset by clicking on **tira_data** in the top right "global environment" panel of your *RStudio* browser.  Your global environment is where you can see all the datasets, functions and other things you have loaded in the current session. 
+Alternatively, you can also view your dataset by clicking on **stegen_data** in the top right "global environment" panel of your *RStudio* browser.  Your global environment is where you can see all the datasets, functions and other things you have loaded in the current session. 
 
 </details>
 
@@ -151,19 +151,19 @@ Alternatively, you can also view your dataset by clicking on **tira_data** in th
 <summary> <b> d) Recode data </b> </summary>
 Use the "describe" command to assess your data and identify variables with missing values. The describe command showed that the variables salmon, pork and horseradish have a few records with a value of 9. These need to be recoded to NA.
 
-* Using the square brackets "[...]" after a variable allows you to subset for certain observations. To recode values of 9 to NA for the pork variable, select observations where pork **(tira_data\$pork)** is equal to 9 **[tira_data\$pork == 9]** and set these observations equal to NA 
+* Using the square brackets "[...]" after a variable allows you to subset for certain observations. To recode values of 9 to NA for the pork variable, select observations where pork **(stegen_data\$pork)** is equal to 9 **[stegen_data\$pork == 9]** and set these observations equal to NA 
     
 * Always use the double equals "==" within square brackets; this a logical (Boolean) operator
 
 * Use "! = " when you want to write "not equal to"
 
 ```{r stegen_hw_difficult-8, eval = TRUE}
-# The first line below is read as follows:  assign a value of NA to tira_data$pork WHERE tira_data$pork is equal to 9
-tira_data$pork[tira_data$pork == 9] <- NA
+# The first line below is read as follows:  assign a value of NA to stegen_data$pork WHERE stegen_data$pork is equal to 9
+stegen_data$pork[stegen_data$pork == 9] <- NA
 
-tira_data$salmon[tira_data$salmon == 9] <- NA
+stegen_data$salmon[stegen_data$salmon == 9] <- NA
 
-tira_data$horseradish[tira_data$horseradish == 9] <- NA
+stegen_data$horseradish[stegen_data$horseradish == 9] <- NA
 ```
 
 </details>
@@ -171,7 +171,7 @@ tira_data$horseradish[tira_data$horseradish == 9] <- NA
 <details>
 <summary> <b> e) Save your new dataset </b> </summary>
 ```{r stegen_hw_difficult-10}
-write.csv(tira_data, file = here::here("data", "tira_clean.csv"))
+write.csv(stegen_data, file = here::here("data", "stegen_clean.csv"))
 ```
 
 </details>

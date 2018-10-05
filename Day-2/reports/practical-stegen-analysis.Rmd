@@ -60,7 +60,7 @@ attack_rate <- function(table) {
 ```
 
 ```{r stegen_hw_difficult-4, results = 'hide'}
-tira_data <- read.csv(here::here("data", "tira_clean.csv"), stringsAsFactors = FALSE)
+stegen_data <- read.csv(here::here("data", "stegen_clean.csv"), stringsAsFactors = FALSE)
 ```
 
 ## Question 1:  What is/are the vehicle/s for this outbreak?
@@ -101,7 +101,7 @@ The outputs required for a, c and d are provided by the same function as describ
 
 ```{r stegen_hw_difficult-19}
 # The first element will be rows and the 2nd will be columns
-count <- table(tira_data$tira,tira_data$ill, deparse.level = 2)
+count <- table(stegen_data$tira,stegen_data$ill, deparse.level = 2)
 
 # Here we select row % of count by including ,1 in the prop.table section
 prop <- round(prop.table(count,1),digits = 2) 
@@ -128,7 +128,7 @@ vars <- c("tira", "wmousse", "dmousse", "mousse", "beer", "redjelly", "fruitsala
 
 ```{r stegen_hw_difficult-22}
 #NB. click on "sva" in your global environment to view Daniel's source code and read his explanations
-a <- sva(tira_data, outcome = "ill", exposures = c(vars), measure = "rr", verbose = TRUE)
+a <- sva(stegen_data, outcome = "ill", exposures = c(vars), measure = "rr", verbose = TRUE)
 a
 ```
 
@@ -136,13 +136,13 @@ To calculate attack rates for age and sex, you can use the attack_rate function.
 
 ```{r stegen_hw_difficult-23}
 # the attack_rate function acts on tables and not data (as in the big_table function)
-counts_sex <- table(tira_data$sex, tira_data$ill)
+counts_sex <- table(stegen_data$sex, stegen_data$ill)
 attack_rate(counts_sex)
 
 # We will be using the same age group split as in section 2, <30 and >30
-tira_data$agegroup <- ifelse(tira_data$age >= 30, 1, 0)
+stegen_data$agegroup <- ifelse(stegen_data$age >= 30, 1, 0)
 
-counts_age <- table(tira_data$agegroup, tira_data$ill)
+counts_age <- table(stegen_data$agegroup, stegen_data$ill)
 attack_rate(counts_age)
 
 ```
@@ -157,18 +157,18 @@ Use the variable tportion and tabulate it. Consider whether you would recode thi
 
 ```{r stegen_hw_difficult-24}
 # Tabulate tportion variable against illness using attack_rate function
-counts_tportion <- table(tira_data$tportion, tira_data$ill)
+counts_tportion <- table(stegen_data$tportion, stegen_data$ill)
 attack_rate(counts_tportion)
 ```
 ```{r stegen_hw_difficult-25}
 # Recode 3 portions of tportion as 2 portions
 # Make a new variable called tportion2 that has the same values as tportion
-tira_data$tportion2 <- tira_data$tportion
-tira_data$tportion2[tira_data$tportion2 == 3] <- 2
+stegen_data$tportion2 <- stegen_data$tportion
+stegen_data$tportion2[stegen_data$tportion2 == 3] <- 2
 ```
 ```{r stegen_hw_difficult-26}
 # Calculate counts, proportions and sum of recoded tportion2
-counts_tportion2 <- table(tira_data$tportion2,tira_data$ill)
+counts_tportion2 <- table(stegen_data$tportion2,stegen_data$ill)
 attack_rate(counts_tportion2)
 ```
 
@@ -201,10 +201,10 @@ The **epi.2by2** function in the epiR package can be used to to identify effect 
 ```{r stegen_hw_difficult-27}
 # Convert outcome/exposure variables to factor variables and reorder them
 # The variables of interest are identified by their column number but variable names could equally be used
-vars <- colnames(tira_data[,c(2,6,8:10,12:21)])
+vars <- colnames(stegen_data[,c(2,6,8:10,12:21)])
 
 for (var in vars) {
-  tira_data[,var] <- factor(tira_data[,var],levels = c(1,0)) # levels of the variable are now (1,0) instead of (0,1)
+  stegen_data[,var] <- factor(stegen_data[,var],levels = c(1,0)) # levels of the variable are now (1,0) instead of (0,1)
 }
 ```
 
@@ -212,7 +212,7 @@ Stratify key exposure variables by exposure to tiramisu. We will use exposure to
 
 ```{r stegen_hw_difficult-28}
 # Make a 3-way table with exposure of interest, the outcome and the stratifying variable in that order
-a <- table(tira_data$wmousse, tira_data$ill, tira_data$tira)
+a <- table(stegen_data$wmousse, stegen_data$ill, stegen_data$tira)
 
 # Use the epi.2by2 function to calculate RRs (by stating method = "cohort.count")
 mh1 <- epi.2by2(a, method = "cohort.count")
@@ -268,7 +268,7 @@ strata_risk <- function(var, case, strat) {
 vars <- c("wmousse", "dmousse", "mousse", "beer", "redjelly", "fruitsalad", "tomato", "mince", "salmon", "horseradish", "chickenwin", "roastbeef", "pork") 
 
 # Run strata_risk for each one using tiramisu as strata
-lapply(tira_data[vars], strata_risk, case = tira_data$ill, strat = tira_data$tira)
+lapply(stegen_data[vars], strata_risk, case = stegen_data$ill, strat = stegen_data$tira)
 ```
 
 Have a look at the association between beer and the illness. By stratifying the analysis on tiramisu consumption we can measure the potential protective effect of beer among those who ate tiramisu.   It seems that consumption of beer may reduce the effect of tiramisu consumption on the occurrence of gastroenteritis. The RR does not significantly differ between the two strata (0.8 vs. 1.0 and confidence intervals overlap). But, effect modification may be present. A similar stratification was conducted assessing dose response for tiramisu consumption among beer drinkers and no-beer drinkers.

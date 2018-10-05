@@ -57,7 +57,7 @@ attack_rate <- function(table) {
 ```
 
 ```{r stegen_hw_difficult-4, results = 'hide'}
-tira_data <- read.csv(here::here("data", "tira_clean.csv"), stringsAsFactors = FALSE)
+stegen_data <- read.csv(here::here("data", "stegen_clean.csv"), stringsAsFactors = FALSE)
 ```
 
 # Descriptive Analysis
@@ -91,13 +91,13 @@ You can view the structure of your data set using the following commands:
 
 ```{r stegen_hw_difficult-6}
 # str provides an overview of the number of observations and variable types
-str(tira_data)
+str(stegen_data)
 
 # summary provides mean, median and max values of your variables
-summary(tira_data)
+summary(stegen_data)
 
 # describe (from Hmisc package) provides no. of observations, missing values, unique levels of each variable
-Hmisc::describe(tira_data) 
+Hmisc::describe(stegen_data) 
 ```
 
 
@@ -106,18 +106,18 @@ Hmisc::describe(tira_data)
 * the whole dataset
 * specific variables of interest  
 
-In the example below we look at sex, age and pork in the **tira_data** dataset. You can examine a variable within a dataset using the '$' sign followed by the variable name. 
+In the example below we look at sex, age and pork in the **stegen_data** dataset. You can examine a variable within a dataset using the '$' sign followed by the variable name. 
 
 
 ```{r stegen_hw_difficult-7}
 # table will give a very basic frequency table (counts), 
-table(tira_data$sex)
+table(stegen_data$sex)
 
 # summary gives the mean, median and max values of the specified variable
-summary(tira_data$age)
+summary(stegen_data$age)
 
 # describe gives the number of data points, missing values and number of categories
-describe(tira_data$pork)
+describe(stegen_data$pork)
 
 ```
 
@@ -129,13 +129,13 @@ describe(tira_data$pork)
 We can create individual tables for each variable with the following steps:
 
 ```{r stegen_hw_difficult-9}
-# Assign the counts of tira_data$sex to the object "sex"
-sex <- table(tira_data$sex)
+# Assign the counts of stegen_data$sex to the object "sex"
+sex <- table(stegen_data$sex)
 
-# Assign the proportion of tira_data$sex to the object "prop" and round the values to 2 decimal places
+# Assign the proportion of stegen_data$sex to the object "prop" and round the values to 2 decimal places
 prop <- round(prop.table(sex)*100, digits = 2)
 
-# Assign the cumulative sum of tira_data$sex to the object "cumul"
+# Assign the cumulative sum of stegen_data$sex to the object "cumul"
 cumul <- cumsum(prop)
 
 # Append/row bind the results of the three objects together and assign to the object table1
@@ -149,9 +149,9 @@ table1
 We could also use the big_table function (on page 2), which does all of the above steps in one line.
 
 ```{r stegen_hw_difficult-11}
-big_table(tira_data$sex)
+big_table(stegen_data$sex)
 
-big_table(tira_data$beer)
+big_table(stegen_data$beer)
 ```
 
 We could use the big_table function on each of our variables, or we could use a function to go through our variables in one go with the big_table function.
@@ -166,7 +166,7 @@ twobytwo <- function(x) {
   return(total)
 }
 
-lapply(tira_data[, vars, drop = FALSE], FUN = twobytwo)
+lapply(stegen_data[, vars, drop = FALSE], FUN = twobytwo)
 ```
 
 </details>
@@ -178,7 +178,7 @@ You can use the following to examine the age distribution among people who atten
 
 ```{r stegen_hw_difficult-13}
 # Boxplot of the age of all who attended the party
-boxplot(tira_data$age)
+boxplot(stegen_data$age)
 ```
 
 
@@ -187,14 +187,14 @@ boxplot(tira_data$age)
 
 # Here we use the hist function to plot the age of cases only (ill == 1)
 # You will see that RStudio creates a jpeg file in your working directory with the above path and filename.
-age_hist_all <- hist(tira_data$age[tira_data$ill == 1],
+age_hist_all <- hist(stegen_data$age[stegen_data$ill == 1],
                      xlab = "Age",
                      ylab = "No. of cases",
                    main = "Histogram of the ages of cases")
 ```
 
 ```{r stegen_hw_difficult-15, echo = FALSE}
-age_hist_all <- hist(tira_data$age[tira_data$ill == 1],
+age_hist_all <- hist(stegen_data$age[stegen_data$ill == 1],
                      xlab = "Age",
                      ylab = "No. of cases",
                    main = "Histogram of the ages of cases")
@@ -205,15 +205,15 @@ If we believe that there are two identifiable age groups, then we can create a n
 
 ```{r stegen_hw_difficult-16}
 # by using ifelse (similar to Excel if statements)
-tira_data$agegroup <- ifelse(tira_data$age >= 30, 1, 0)
+stegen_data$agegroup <- ifelse(stegen_data$age >= 30, 1, 0)
 ```
 ```{r stegen_hw_difficult-17, eval = FALSE}
 # Two alternative approaches
 # The below are particularly useful when you want to create more than 2 categories
 # by using cut
-tira_data$agegroup <- cut(tira_data$age, c(0,30,150), labels = FALSE) - 1
+stegen_data$agegroup <- cut(stegen_data$age, c(0,30,150), labels = FALSE) - 1
 # by using findInterval
-tira_data$agegroup <- findInterval(tira_data$age, c(30,150))
+stegen_data$agegroup <- findInterval(stegen_data$age, c(30,150))
 
 ```
 
@@ -226,21 +226,21 @@ You can produce summary tables by person and time (no place variable provided) u
 
 ```{r stegen_hw_difficult-18}
 # Table 1: Descriptive epidemiology: Study population by sex
-big_table(tira_data$sex)
+big_table(stegen_data$sex)
 
 # Table 2: Descriptive epidemiology: Study population by age group
 # useNA ="always" here allows you to see the proportion of NAs for this variable
-big_table(tira_data$agegroup, useNA = "always")
+big_table(stegen_data$agegroup, useNA = "always")
 
-summary(tira_data$age)
+summary(stegen_data$age)
         
 
 # Table 3: Descriptive epidemiology: Attack rate
-big_table(tira_data$ill)
+big_table(stegen_data$ill)
 
 
 # Table 4: Descriptive epidemiology: Cases by date of onset of illness
-big_table(tira_data$dateonset)
+big_table(stegen_data$dateonset)
 ```
 
 </details>
@@ -250,10 +250,10 @@ big_table(tira_data$dateonset)
 
 ```{r stegen_hw_difficult-19}
 # Make sure the dates are "Date" objects
-tira_data$dateonset <- as.Date(tira_data$dateonset)
+stegen_data$dateonset <- as.Date(stegen_data$dateonset)
 
 # Create the epicurve
-stegen_incidence <- incidence::incidence(tira_data$dateonset, interval = 1)
+stegen_incidence <- incidence::incidence(stegen_data$dateonset, interval = 1)
 plot(stegen_incidence)
 ```
 

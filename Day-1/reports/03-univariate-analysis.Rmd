@@ -6,53 +6,17 @@ output:
   html_document
 ---
 
-The following code has been adapted to *R* for learning purposes. The initial contributors and copyright license are listed below. All copyrights and licenses of the original document apply here as well. 
-
-**Contributors to *R* code:**  
-Daniel Gardiner(PHE) and Lukas Richter (AGES)
-
-# Copyright and license
-This case study was designed under an ECDC service contract for the development of training material (2010). The data were slightly modified for training purposes.
-
-**Source :**
-This case study is based on an investigation conducted by Jurgita Pakalniskiene, Gerhard Falkenhorst (Statens Serum Institut, Copenhagen) and colleagues
-
-**Authors:**
-Jurgita Pakalniskiene, Gerhard Falkenhorst, Esther Kissling, Gilles Desvé.
-
-**Reviewers:**
-Marta Valenciano, Alain Moren.
-
-**Adaptions for previous modules:**
-Irina Czogiel, Kristin Tolksdorf, Michaela Diercke, Sybille Somogyi, Christian Winter, Sandra Dudareva-Vizule with the help of Katharina Alpers, Alicia Barrasa, Androulla Efstratiou, Steen Ethelberg, Annette Heißenhuber, Aftab Jasir, Ioannis Karagiannis and Pawel Stefanoff
-
-
-**You are free:**
-
-+ to Share - to copy, distribute and transmit the work
-+ to Remix - to adapt the work
-Under the following conditions:
-+ Attribution - You must attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work). The best way to do this is to keep as it is the list of contributors: sources, authors and reviewers.
-+ Share Alike - If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one. Your changes must be documented. Under that condition, you are allowed to add your name to the list of contributors.
-+ You cannot sell this work alone but you can use it as part of a teaching.
-With the understanding that:
-+ Waiver - Any of the above conditions can be waived if you get permission from the copyright holder.
-+ Public Domain - Where the work or any of its elements is in the public domain under applicable law, that status is in no way affected by the license.
-+ Other Rights - In no way are any of the following rights affected by the license:
-+ Your fair dealing or fair use rights, or other applicable copyright exceptions and limitations;
-+ The author's moral rights;
-+ Rights other persons may have either in the work itself or in how the work is used, such as publicity or privacy rights.
-+ Notice - For any reuse or distribution, you must make clear to others the license terms of this work by keeping together this work and the current license.
-This licence is based on http://creativecommons.org/licenses/by-sa/3.0/
-
-```{r setup, include = FALSE}
-# This tells knitr to start everything from the project directory
-knitr::opts_knit$set(root.dir = here::here())
-```
-
 # Univariable analysis (Cohort and case control)
 
-To identify (the) potential vehicle(s) in the outbreak, proceed with an analytical study where you use statistical tests to investigate the associations of some suspicious food items with the disease.
+This practical is a continuation of the analysis concerning the outbreak of 
+gastroenteritis after a high school dinner in Copenhagen, Denmark. The 
+introduction to this case is presented in part 1, which focussed on initial data 
+inspection and cleaning. Part 2 focussed on descriptive statistics. This 
+practical will focus on univariable analysis. To identify (the) potential 
+vehicle(s) in the outbreak, proceed with an analytical study where you use 
+statistical tests to investigate the associations of some suspicious food items
+with the disease.
+
 
 ## Preparing packages and data
 
@@ -251,3 +215,57 @@ test_DR("vealD", case = "case", dataset = cph)
 test_DR("pastaD", case = "case", dataset = cph)
 ```
 
+## Conclusions of univariate analyses 
+
+The interesting results here are that the two food items that are most suspicious are pasta and veal. In particular, the dose response relationship that was found for pasta points towards pasta as the potential vehicle. Pasta as such is unlikely to be contaminated, but as you can see in the label, it was served with pesto!
+Before you jump to conclusions, be aware that this result could be due to confounding! Maybe pasta was clean but eaten by all the people who ate the food item that actually was contaminated!
+
+# Part 4
+
+The analysis continues with stratified analyses in part 4.
+
+# About this document
+
+This code has been adapted to *R* for learning purposes. The initial contributors and copyright license are listed below. All copyrights and licenses of the original document apply here as well. 
+
+**Contributors to *R* code:**  
+Zhian N. Kamvar, Daniel Gardiner (PHE), and Lukas Richter (AGES)
+
+## Citation
+
+Pakalniskiene, J., G. Falkenhorst, M. Lisby, S. B. Madsen, K. E. P. Olsen, E. M. Nielsen, A. Mygh, Jeppe Boel, and K. Mølbak. "A foodborne outbreak of enterotoxigenic E. coli and Salmonella Anatum infection after a high-school dinner in Denmark, November 2006."
+Epidemiology & Infection 137, no. 3 (2009): 396-401. [doi: 10.1017/S0950268808000484](https://doi.org/10.1017/S0950268808000484)
+
+## Copyright and license
+This case study was designed under an ECDC service contract for the development of training material (2010). The data were slightly modified for training purposes.
+
+**Source :**
+This case study is based on an investigation conducted by Jurgita Pakalniskiene, Gerhard Falkenhorst (Statens Serum Institut, Copenhagen) and colleagues
+
+**Authors:**
+Jurgita Pakalniskiene, Gerhard Falkenhorst, Esther Kissling, Gilles Desvé.
+
+**Reviewers:**
+Marta Valenciano, Alain Moren.
+
+**Adaptions for previous modules:**
+Irina Czogiel, Kristin Tolksdorf, Michaela Diercke, Sybille Somogyi, Christian Winter, Sandra Dudareva-Vizule with the help of Katharina Alpers, Alicia Barrasa, Androulla Efstratiou, Steen Ethelberg, Annette Heißenhuber, Aftab Jasir, Ioannis Karagiannis and Pawel Stefanoff
+
+
+**You are free:**
+
++ to Share - to copy, distribute and transmit the work
++ to Remix - to adapt the work
+Under the following conditions:
++ Attribution - You must attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work). The best way to do this is to keep as it is the list of contributors: sources, authors and reviewers.
++ Share Alike - If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one. Your changes must be documented. Under that condition, you are allowed to add your name to the list of contributors.
++ You cannot sell this work alone but you can use it as part of a teaching.
+With the understanding that:
++ Waiver - Any of the above conditions can be waived if you get permission from the copyright holder.
++ Public Domain - Where the work or any of its elements is in the public domain under applicable law, that status is in no way affected by the license.
++ Other Rights - In no way are any of the following rights affected by the license:
++ Your fair dealing or fair use rights, or other applicable copyright exceptions and limitations;
++ The author's moral rights;
++ Rights other persons may have either in the work itself or in how the work is used, such as publicity or privacy rights.
++ Notice - For any reuse or distribution, you must make clear to others the license terms of this work by keeping together this work and the current license.
+This licence is based on http://creativecommons.org/licenses/by-sa/3.0/

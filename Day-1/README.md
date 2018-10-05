@@ -17,9 +17,9 @@ By the end of this module, the students should:
 
 # Instructions
 
-1. Open the file called `copenhagen.pdf`.
+1. Open the first practical on RECON learn: <https://www.reconlearn.org/post/copenhagen-introduction.html>
 2. Double-click on the `recon-day-1.Rproj` file to open RStudio
-3. Open `reports/01-intro-clean.Rmd` and follow along with `copenhagen.pdf`.
+3. Open `reports/01-intro-clean.Rmd` and follow along with the tutorials on RECON learn.
 
 The case study has been split into four sections, following the same data set.
 In the RMarkdown files, there will be pre-written code for you to run. 

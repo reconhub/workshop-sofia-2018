@@ -13,7 +13,6 @@ knitr::opts_chunk$set(error = TRUE)
 #' - functions
 #' - dynamic reports
 #' - projects
-#' - the "here" package
 #'
 #' ## Part 1: Packages -----------------------------------
 #'
@@ -135,4 +134,21 @@ my_2x2(var = sf$fish, sick = sf$sick)
 #' 
 #' > n.b. This document can be converted to an RMarkdown document by running
 #+ eval = FALSE
+
 knitr::spin("hello.R", knit = FALSE)
+
+#'
+#' ## Part 4: Projects
+#'
+#' When you begin to work in R, it's a good idea to begin your organising 
+#' before you do any code. This way, you can be sure that your code, your data,
+#' and your outputs are all in different places. 
+#' 
+#' Unfortunately, computers are dumb. When we tell a computer to read in a data
+#' set, we want it to know where to go. Combining Rstudio projects and the 
+#' here package allows us to give the computer an anchor so that we can keep
+#' our analyses nice and tidy.
+#' 
+#' During today's practical, we have set up folders and RMarkdown documents for 
+#' you to use. Tomorrow, you will create your own RMarkdown documents, and the 
+#' next day, you will create your own folder structure. Good luck!

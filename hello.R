@@ -1,3 +1,7 @@
+#+ setup, include = FALSE, echo = FALSE
+# ignore this part for now
+knitr::opts_chunk$set(error = TRUE)
+#'
 #' # Zhian's quick introduction to R
 #' 
 #' date: 2018-10-07
@@ -19,7 +23,7 @@
 #' the **C**entralised **R** **A**rchive **N**etwork). You can install packages
 #' from CRAN by using the function `install.packages()` with a character vector
 #' of the names of the packages you want to install:
-
+#+ eval = FALSE
 install.packages(c("rmarkdown", "here", "epiR"))
 
 #' > **n.b.** you only need to do this once. 
@@ -119,4 +123,16 @@ my_2x2(var = sf$fish, sick = sf$sick)
 
 #' This technique of writing functions will become handy when we need to perform
 #' the same procedure over and over again. 
-
+#'
+#' ----------------------------------------------------------------------------
+#'
+#' ## Part 3: RMarkdown
+#'
+#' One thing that's great about R is the fact that there is a package that allows
+#' you to write reports in R called RMarkdown. You can create a new RMarkdown
+#' document by opening Rstudio, clicking on File > New File > R Markdown, add a 
+#' title and then you can start working in the RMarkdown document. 
+#' 
+#' > n.b. This document can be converted to an RMarkdown document by running
+#+ eval = FALSE
+knitr::spin("hello.R", knit = FALSE)

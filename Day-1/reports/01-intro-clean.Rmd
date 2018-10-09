@@ -310,9 +310,6 @@ symptomless_dvb <- no_symptoms(cph$diarrhoea) & no_symptoms(cph$vomiting) & no_s
 table(symptomless_dvb) # how many were symptomless?
 cph$start[symptomless_dvb] <- NA
 
-# re-code sex in to binary
-cph$sex <- ifelse(cph$sex == "male", 1, 0)
-cph$sex <- as.numeric(cph$sex)
 ```
 
 ### Creating a case definition 
@@ -380,15 +377,15 @@ Saving your intermediate, cleaned data set allows you to perform multi-facetted 
 
 ```{r, eval = FALSE}
 # save as a flat csv file:
-write.csv(cph, file = here::here("data", "clean_copenhagen.csv"), row.names = FALSE)
+write.csv(cph, file = here::here("data", "copenhagen_descriptive.csv"), row.names = FALSE)
 # read the file
-cph2 <- read.csv(file = here::here("data", "clean_copenhagen.csv"), stringsAsFactors = FALSE)
+cph2 <- read.csv(file = here::here("data", "copenhagen_descriptive.csv"), stringsAsFactors = FALSE)
 identical(cph, cph2)
 
 # save as a R data file
-saveRDS(cph, file = here::here("data", "clean_copenhagen.rds"))
+saveRDS(cph, file = here::here("data", "copenhagen_descriptive.rds"))
 # read in the file
-cph2 <- readRDS(file = here::here("data", "clean_copenhagen.rds"))
+cph2 <- readRDS(file = here::here("data", "copenhagen_descriptive.rds"))
 identical(cph, cph2)
 ```
 
